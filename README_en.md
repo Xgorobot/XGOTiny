@@ -2,12 +2,11 @@
 
 (English | [中文](README.md) ))
 
-# The First Desktop Pet-Level 5-DOF Robot Dog
-
+# 🐶XGO-tiny Five-Degree-of-Freedom Robot Dog Lulu
+Lightweight Smart Robot Dog Based on ESP32-S3 + XiaoZhi AI Framework | Open-Source and Replicable | Supports Voice Interaction and Remote Control
 ## Videos
 
-👉 [LULU: My Robot Can’t Possibly Be This Funny!](https://www.bilibili.com/video/BV1nqa8zHEqR)  
-👉 [LULU: Why Domestic Desktop Pets Are Winning!](https://www.bilibili.com/video/BV1zctqzsEAa)
+- To be updated
 
 ---
 
