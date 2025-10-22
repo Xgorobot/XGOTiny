@@ -15,15 +15,7 @@
 
 - This is an open-source ESP32 project by **Xia Ge**, released under the **MIT License**, allowing free personal and commercial use.  
 
-- **LULU** is built on the **ESP32-S3** platform and powered by the **Xiaozhi AI Engine**, enabling a multimodal real-time interactive system compatible with large models such as **Qwen** and **DeepSeek**.  
-
-With advanced semantic understanding and multilingual recognition capabilities, LULU can engage in natural conversations, perform tasks, and handle information queries with ease.  
-
-Its **five degrees of freedom design**, including a waist rotation joint and flexible leg mechanisms, allows lifelike movements such as waving, cuddling, and playful gestures — creating a warm and engaging interaction experience.  
-
-LULU integrates a **microphone, speaker, camera, and RGB meteor light**, supporting wake-word detection, multimodal fusion, continuous learning, and personalized voiceprint functions — offering users an immersive smart desktop pet experience.  
-
-**Luwu Dynamics** aims to help robotics enthusiasts learn and explore quadruped robot systems through this project.  
+-XGO-tiny (Lulu) is a miniature quadrupedal robot platform designed for educators, makers, and embedded AI enthusiasts. Powered by the ESP32-S3 single-chip microcontroller as its core controller, it deeply integrates the open-source AI voice framework “XiaoZhi,” achieving a fully localized closed-loop system spanning voice wake-up, natural language understanding, and action execution. Unlike other four-degree-of-freedom robotic dogs, XGO-tiny innovatively employs five bus-connected serial servos to form a five-degree-of-freedom (5DOF) motion structure. It introduces a waist servo in the robot's torso, communicating via UART bus. This significantly simplifies wiring complexity, resulting in a streamlined robot structure and enabling richer, more engaging movements.
 
 - If you have any ideas or suggestions, feel free to submit them via **Issues**.
 
@@ -60,42 +52,5 @@ LULU integrates a **microphone, speaker, camera, and RGB meteor light**, support
 The firmware connects by default to the [xiaozhi.me](https://xiaozhi.me) official server.  
 Personal users can register for free access to the **Qwen real-time model**.
 
----
 
-### Development Environment
-
-- **Editor:** Cursor or VSCode  
-- **ESP-IDF:** Version 5.4 or above  
-- **Recommended OS:** Linux (faster compilation, fewer driver issues)  
-- **Code Style:** Google C++ Style Guide — please follow it before committing code  
-
----
-
-### Developer Documentation
-
-- [Custom Board Guide](main/boards/README.md) – Learn how to create your own AI board for Xiaozhi  
-- [MCP Protocol for IoT Control](docs/mcp-usage.md) – How to control IoT devices via MCP  
-- [MCP Interaction Flow](docs/mcp-protocol.md) – Implementation guide for device-side MCP protocol  
-- [MQTT + UDP Hybrid Communication Protocol](docs/mqtt-udp.md)  
-- [Detailed WebSocket Communication Protocol](docs/websocket.md)
-
----
-
-## AI Model Configuration
-
-If you already have a **Xiaozhi AI robot device** connected to the official server,  
-you can log in to the [xiaozhi.me](https://xiaozhi.me) console for model configuration.
-
----
-
-## Acknowledgements
-
-Special thanks to the following contributors or Bilibili Creator (in no particular order):
-
-- Project Manager: **Liu Pengfei (LuwuDynamics)**  
-- Bilibili Creator: **Xvsenfeng**  
-- Bilibili Creator: **Vanilla Nahida Meow**  
-- Developer: **Cai Leyan (Hustle28214)**  
-- Developer: **Wang Yunxin (KEENNESS19)**  
-- Developer: **Xu Tian (Oral-tian)**
 
