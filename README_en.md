@@ -27,7 +27,7 @@ Lightweight Smart Robot Dog Based on ESP32-S3 + XiaoZhi AI Framework | Open-Sour
 - 1.09” Round TFT SPI Display – 240×240 resolution  
 - 70 mm 3V Meteor Flow Light Strip  
 - GC0308 Camera Module  
-- Consumer-grade Servos  
+- EM3 Servos  
 
 ---
 
