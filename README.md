@@ -1,13 +1,12 @@
 XGO-Tiny  a Quadrupedal robots.
 
-## The First Desktop Pet-Level 5-DOF Robot Dog | 首款桌宠级五自由度机器狗
+## 🐶 XGO-tiny 五自由度机器狗噜噜
 
 （中文 | [English](README_en.md) ）
 
 ## 视频
 
-👉[噜噜：我的机器人不可能这么搞笑！](https://www.bilibili.com/video/BV1nqa8zHEqR)  
-👉[噜噜：国产桌宠赢在哪里？噜噜来啦！](https://www.bilibili.com/video/BV1zctqzsEAa)
+- 待更新
 
 ## 介绍
 
