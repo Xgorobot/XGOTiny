@@ -23,7 +23,7 @@ XGO-Tiny  a Quadrupedal robots.
 - 1.09 英寸 TFT SPI圆形全彩屏幕，分辨率 240*240
 - 70mm长3v流星雨流水灯
 - GC0308 摄像头
-- 消费级舵机
+- EM3舵机
 
 ### 实现功能
 
