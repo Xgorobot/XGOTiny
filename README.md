@@ -1,7 +1,7 @@
 XGO-Tiny  a Quadrupedal robots.
 
 ## 🐶 XGO-tiny 五自由度机器狗噜噜
-基于 ESP32-S3 + 小智 AI 框架的轻量化智能机器狗 | 开源可复刻 | 支持语音交互与远程控制
+基于 ESP32-S3 + 小智 AI 框架的轻量化智能机器狗 | 开源可复刻 | 支持语音交互和多模态交互
 
 （中文 | [English](README_en.md) ）
 
@@ -23,7 +23,7 @@ XGO-Tiny  a Quadrupedal robots.
 - 1.09 英寸 TFT SPI圆形全彩屏幕，分辨率 240*240
 - 70mm长3v流星雨流水灯
 - GC0308 摄像头
-- EM3舵机
+- EM3总线串口舵机
 
 ### 实现功能
 
