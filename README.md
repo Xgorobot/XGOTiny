@@ -1,4 +1,4 @@
-XGO-Tiny  a Quadrupedal robots.
+XGO-tiny is a desktop-level 5-DOF robotic dog.
 
 ## 🐶 XGO-tiny 五自由度机器狗噜噜
 基于 ESP32-S3 + 小智 AI 框架的轻量化智能机器狗 | 开源可复刻 | 支持语音和视觉多模态交互
