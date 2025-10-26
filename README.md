@@ -38,6 +38,8 @@ XGO-Tiny  a Quadrupedal robots.
 
 ## 软件
 
-固件默认接入 [xiaozhi.me](https://xiaozhi.me) 官方服务器，个人用户注册账号可以免费使用 Qwen 实时模型。
+固件默认接入 [xiaozhi.me](https://xiaozhi.me) 官方服务器，个人用户注册账号可以免费使用。
+
+## 交流QQ群 893599416
 
 
