@@ -34,7 +34,7 @@ XGO-Tiny  a Quadrupedal robots.
 
 ### 噜噜百科全书
 
-👉 [《噜噜百科全书》](https://www.yuque.com/luwudynamics/pet/oytelbareyl97xgd )
+👉 [《噜噜开源文档》](https://www.yuque.com/luwudynamics/pet/uld90dhfn0gf979x)
 
 ## 软件
 
