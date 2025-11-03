@@ -43,5 +43,10 @@ extern int calibrate_mode;
 extern uint8_t Action_ID;
 extern uint8_t actionLoop_FLAG;
 extern Motor motor[MOTOR_NUM];
-
+extern float angle1;
+extern float angle2;
+extern float angle3;
+extern float angle4;
+extern float angle5;
+extern int control_mode;
 #endif

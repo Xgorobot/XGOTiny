@@ -22,11 +22,16 @@ float vx = 0.0;
 float vyaw = 0.0;
 int calibrate_mode = 0;
 int init_flag = 0;
+int control_mode = 0; //0为移动模式，1为直接控制角度模式
 float l_p[][5] = {{3*PI/4.0, 3*PI/4.0, 3*PI/4.0, 3*PI/4.0, PI/4.0},
                   {-PI/4.0, -PI/4.0, -PI/4.0, -PI/4.0, PI/4.0},
                   {3*PI/4.0, -PI/4.0,  -PI/4.0, 3*PI/4.0, PI/4.0},
                   {-PI/4.0, 3*PI/4.0,  3*PI/4.0, -PI/4.0, PI/4.0}};
-
+float angle1 = 0.0;
+float angle2 = 0.0;
+float angle3 = 0.0;
+float angle4 = 0.0;
+float angle5 = 0.0;
 
 void set_action_loop_flag(uint8_t flag){
     if(flag==1){
@@ -189,19 +194,23 @@ void move(){
         yaw_index = 2;
     }
     if(Action_ID==0){
-        if(abs(vx)>15 || abs(vyaw)>15){
-            ratio = abs(vx)/(abs(vx) + abs(vyaw));
-            motor[0].DesPos = motor[0].ZeroPos - 700 + (short)(step*cos(pace_t + ratio*l_p[x_index][0] + (1-ratio)*l_p[yaw_index][0])); 
-            motor[1].DesPos = motor[1].ZeroPos + 700 + (short)(step*cos(pace_t + ratio*l_p[x_index][1] + (1-ratio)*l_p[yaw_index][1])); 
-            motor[2].DesPos = motor[2].ZeroPos - 700 - (short)(step*cos(pace_t + ratio*l_p[x_index][2] + (1-ratio)*l_p[yaw_index][2]));
-            motor[3].DesPos = motor[3].ZeroPos + 700 - (short)(step*cos(pace_t + ratio*l_p[x_index][3] + (1-ratio)*l_p[yaw_index][3]));
-            motor[4].DesPos = motor[4].ZeroPos + (short)(step*1.5*cos(pace_t + ratio*l_p[x_index][4] + (1-ratio)*l_p[yaw_index][4]));
+        if(control_mode == 0){
+            if(abs(vx)>15 || abs(vyaw)>15){
+                ratio = abs(vx)/(abs(vx) + abs(vyaw));
+                motor[0].DesPos = motor[0].ZeroPos - 700 + (short)(step*cos(pace_t + ratio*l_p[x_index][0] + (1-ratio)*l_p[yaw_index][0])); 
+                motor[1].DesPos = motor[1].ZeroPos + 700 + (short)(step*cos(pace_t + ratio*l_p[x_index][1] + (1-ratio)*l_p[yaw_index][1])); 
+                motor[2].DesPos = motor[2].ZeroPos - 700 - (short)(step*cos(pace_t + ratio*l_p[x_index][2] + (1-ratio)*l_p[yaw_index][2]));
+                motor[3].DesPos = motor[3].ZeroPos + 700 - (short)(step*cos(pace_t + ratio*l_p[x_index][3] + (1-ratio)*l_p[yaw_index][3]));
+                motor[4].DesPos = motor[4].ZeroPos + (short)(step*1.5*cos(pace_t + ratio*l_p[x_index][4] + (1-ratio)*l_p[yaw_index][4]));
+            }else{
+                motor[0].DesPos = motor[0].ZeroPos - 600; 
+                motor[1].DesPos = motor[1].ZeroPos + 600; 
+                motor[2].DesPos = motor[2].ZeroPos - 600;
+                motor[3].DesPos = motor[3].ZeroPos + 600;
+                motor[4].DesPos = motor[4].ZeroPos;
+            }
         }else{
-            motor[0].DesPos = motor[0].ZeroPos - 600; 
-            motor[1].DesPos = motor[1].ZeroPos + 600; 
-            motor[2].DesPos = motor[2].ZeroPos - 600;
-            motor[3].DesPos = motor[3].ZeroPos + 600;
-            motor[4].DesPos = motor[4].ZeroPos;
+            set_motor_angle(angle1, angle2, angle3, angle4, angle5);
         }
     }else{
         xgo_action();

@@ -234,20 +234,30 @@ file(GLOB BOARD_SOURCES
 )
 list(APPEND SOURCES ${BOARD_SOURCES})
 
-if(CONFIG_BOARD_TYPE_LULU_ESP32S3)
+if(CONFIG_BOARD_TYPE_LULU_ESP32S3)    
     set(XGO_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/boards/${BOARD_TYPE}/xgo.cc")
     set(XGO_ACTION_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/boards/${BOARD_TYPE}/xgo_action.cc")
+    set(IMU_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/boards/${BOARD_TYPE}/imu.cc")
+
     if(EXISTS ${XGO_SOURCE})
         list(APPEND SOURCES ${XGO_SOURCE})
         message(STATUS "Added xgo.cc to sources: ${XGO_SOURCE}")
     else()
         message(WARNING "xgo.cc not found at: ${XGO_SOURCE}")
     endif()
+
     if(EXISTS ${XGO_ACTION_SOURCE})
         list(APPEND SOURCES ${XGO_ACTION_SOURCE})
         message(STATUS "Added xgo_action.cc to sources: ${XGO_ACTION_SOURCE}")
     else()
         message(WARNING "xgo_action.cc not found at: ${XGO_ACTION_SOURCE}")
+    endif()
+
+    if(EXISTS ${IMU_SOURCE})
+    list(APPEND SOURCES ${IMU_SOURCE})
+        message(STATUS "Added imu.cc to sources: ${IMU_SOURCE}")
+    else()
+        message(WARNING "imu.cc not found at: ${IMU_SOURCE}")
     endif()
 
     list(APPEND INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/boards/${BOARD_TYPE}")

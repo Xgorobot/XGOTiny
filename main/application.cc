@@ -808,6 +808,7 @@ void Application::XgoRxTask() {
     while (true) {
         #ifdef CONFIG_BOARD_TYPE_LULU_ESP32S3
             xgo_rx();
+            // imu_read_once();
         #endif
         vTaskDelay(pdMS_TO_TICKS(5));
     }

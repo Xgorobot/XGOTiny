@@ -86,9 +86,19 @@ void set_motor_pos(int p1, int p2, int p3, int p4, int p5){
     motor[4].DesPos = motor[4].ZeroPos + p5;
 }
 
+void set_motor_angle(float angle1, float angle2, float angle3, float angle4, float angle5){ 
+    int d1 = angle1/270.0*3000.0-1000;
+    int d2 = -angle2/270.0*3000.0+1000;
+    int d3 = angle3/270.0*3000.0-1000;
+    int d4 = -angle4/270.0*3000.0+1000;
+    int d5 = angle5/270.0*3000.0;
+    set_motor_pos(d1, d2, d3, d4, d5);
+}
+
 void normal_state(){   
     vx = 0.0;
     vyaw = 0.0;
+    control_mode = 0;
     set_motor_pos(-600, 600, -600, 600, 0);
     motor_speed = 1000;
 }

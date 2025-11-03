@@ -1,0 +1,4 @@
+2025年11月3日11:21:22
+添加了set_motor_angle的mcp服务
+添加了icm42670的启动与读取，在imu.cc imu.h中，如果要对yaw估计需要单独开一个程序持续积分，暂时只做pitch、roll估计，放在传感器读取的mcp服务中
+对wifiboard中的获取传感器信息json进行了重写，

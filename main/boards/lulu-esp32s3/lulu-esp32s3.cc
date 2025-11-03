@@ -6,12 +6,12 @@
 #include "button.h"
 #include "config.h"
 #include "mcp_server.h"
-#include "lamp_controller.h"
-#include "led/single_led.h"
+
 #include "esp32_camera.h"
 #include <wifi_station.h>
 #include <esp_log.h>
-#include <driver/i2c_master.h>
+#include <cJSON.h>
+// #include <driver/i2c_master.h>
 #include <esp_lcd_panel_vendor.h>
 #include <esp_lcd_panel_io.h>
 #include <esp_lcd_panel_ops.h>
@@ -20,6 +20,7 @@
 #include <driver/gpio.h>
 #include "xgo.h"
 #include "xgo_action.h"
+#include "imu.h"
 
 #if defined(LCD_TYPE_ILI9341_SERIAL)
 #include "esp_lcd_ili9341.h"
@@ -246,7 +247,19 @@ private:
         camera_->SetHMirror(false);
     }
 
-    
+    void set_angle(float a1, float a2, float a3, float a4, float a5,int t){
+        control_mode = 1;
+        angle1 = a1;
+        angle2 = a2;
+        angle3 = a3;
+        angle4 = a4;
+        angle5 = a5;
+        if(t>0){
+            vTaskDelay(pdMS_TO_TICKS(t));
+        }
+    }
+
+
     void InitializeButtons() {
         boot_button_.OnClick([this]() {
             auto& app = Application::GetInstance();
@@ -265,6 +278,7 @@ private:
     */
     void set_dog_speed(int dog_vx, int dog_vyaw, int time)
     {        
+        control_mode = 0;
         motor_speed = 0;
         vx = 3.0*dog_vx;
         vyaw = 3.0*dog_vyaw;
@@ -503,7 +517,28 @@ private:
                 control_gpio(static_cast<GpioMode>(modeValue));
                 return true;
             }
-        );  
+        );
+        
+        mcp_server.AddTool("self.dog.set_motor_angle", 
+            "即兴动作，设定左前，右前，左后，右后，腰部的五个角度，time为持续时间(毫秒)，前四个角度为0时，四条腿垂直，狗站立，为90时，四条腿水平，狗爬下，第五个角度一般为0，正值上半身向左转，负值上半身向右转。例如默认站立的动作为（40,40,40,40,0）,打招呼动作抬起右前腿(80,120,40,40,30)，如果直接让右前120度会倒，所以左前伸出，且腰向左扭，要让它更加动态可以延时150毫秒，然后多次发右前腿在100、120来回变动的指令。这套随机动作的指令一次最好不要超过15条，需要考虑动作之间延时，最好在100-500毫秒之间，尽可能科学准确地完成用户下达的即兴动作指令。", 
+            PropertyList({
+                Property("angle1", kPropertyTypeInteger, -135.0, 135.0),
+                Property("angle2", kPropertyTypeInteger, -135.0, 135.0),
+                Property("angle3", kPropertyTypeInteger, -135.0, 135.0),
+                Property("angle4", kPropertyTypeInteger, -135.0, 135.0),
+                Property("angle5", kPropertyTypeInteger, -30.0, 30.0),
+                Property("time", kPropertyTypeInteger, 0, 10000),
+            }), [this](const PropertyList& properties) -> ReturnValue {
+                float angle1 = float(properties["angle1"].value<int>());
+                float angle2 = float(properties["angle2"].value<int>());
+                float angle3 = float(properties["angle3"].value<int>());
+                float angle4 = float(properties["angle4"].value<int>());
+                float angle5 = float(properties["angle5"].value<int>());
+                int time = properties["time"].value<int>();
+                set_angle(angle1, angle2, angle3, angle4, angle5, time);                
+                return true;
+            });
+
     }
 
 public:
@@ -515,18 +550,15 @@ public:
         InitializeIot();
         InitializeCamera();        
         InitializeUart();
-        gpio_laser_init();
+        gpio_laser_init();        
         InitZeroPos();
         if (DISPLAY_BACKLIGHT_PIN != GPIO_NUM_NC) {
             GetBacklight()->RestoreBrightness();
-        }
-        
+        }   
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        imu_init();
     }
 
-    virtual Led* GetLed() override {
-        static SingleLed led(BUILTIN_LED_GPIO);
-        return &led;
-    }
 
     virtual AudioCodec* GetAudioCodec() override {
 #ifdef AUDIO_I2S_METHOD_SIMPLEX
@@ -553,6 +585,35 @@ public:
 
     virtual Camera* GetCamera() override {
         return camera_;
+    }
+
+    virtual std::string GetDeviceStatusJson() override {
+        // 调用父类方法获取基础 JSON
+        std::string base_json = WifiBoard::GetDeviceStatusJson();
+        
+        // 解析 JSON
+        cJSON* root = cJSON_Parse(base_json.c_str());
+        if (!root) {
+            return base_json;  // 解析失败，返回原始 JSON
+        }
+
+        // 读取最新的 IMU 数据
+        imu_read_once();
+
+        // 创建 IMU 对象
+        cJSON* imu = cJSON_CreateObject();
+        cJSON_AddNumberToObject(imu, "roll", roll);
+        cJSON_AddNumberToObject(imu, "pitch", pitch);
+        cJSON_AddNumberToObject(imu, "yaw", yaw);
+        cJSON_AddItemToObject(root, "imu", imu);
+
+        // 转换为字符串
+        char* json_str = cJSON_PrintUnformatted(root);
+        std::string result(json_str);
+        cJSON_free(json_str);
+        cJSON_Delete(root);
+        
+        return result;
     }
 };
 

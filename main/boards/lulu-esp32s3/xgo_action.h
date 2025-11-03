@@ -25,7 +25,7 @@ void xgo_action();
 void normal_state();
 void Updated_Counter();
 void Clear_State(uint8_t mode);
-
+void set_motor_angle(float angle1, float angle2, float angle3, float angle4, float angle5);
 
 void Wave();
 void Naughty();

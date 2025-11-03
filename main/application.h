@@ -19,6 +19,7 @@
 
 #ifdef CONFIG_BOARD_TYPE_LULU_ESP32S3
 #include "boards/lulu-esp32s3/xgo.h"
+#include "boards/lulu-esp32s3/imu.h"
 #endif
 
 #define MAIN_EVENT_SCHEDULE (1 << 0)
