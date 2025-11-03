@@ -7,7 +7,7 @@ build/
 docs/
 .devcontainer/
 sdkconfig.old
-sdkconfig
+
 dependencies.lock
 .env
 releases/
