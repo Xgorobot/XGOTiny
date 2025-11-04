@@ -23,14 +23,14 @@ XGO-tiny is a desktop-level 5-DOF robotic dog.
 - 70mm长3v流星雨流水灯
 - GC0308 摄像头
 - EM3总线串口舵机
-
+- ICM42670高性能6轴MEMS
 ### 实现功能
 
 - 语音唤醒(定制语音唤醒词语"小陆同学")
 - 摄像头取景拍照(如:打开摄像头，拍照等)
 - 语音控制机器狗运动(如:前进，后退，握手等)
 - 激光剑动态灯光(如:打开激光剑，切换灯光模式等)
-
+- 利用IMU实现运动学的拓展
 ### 噜噜百科全书
 
 👉 [《噜噜开源文档》](https://www.yuque.com/luwudynamics/pet/uld90dhfn0gf979x)
