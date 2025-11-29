@@ -1,6 +1,6 @@
 RIG-pupyy is a desktop-level 5-DOF robotic dog.
 
-## 🐶 RIG-pupyy 五自由度机器狗-噜噜
+## 🐶 RIG-puppy 五自由度机器狗-噜噜
 基于 ESP32-S3 + 小智 AI 框架的轻量化智能机器狗 | 开源可复刻 | 支持语音和视觉多模态交互
 
 （中文 | [English](README_en.md) ）
