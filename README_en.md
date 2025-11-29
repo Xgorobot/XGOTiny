@@ -1,8 +1,8 @@
-# XGO-Tiny a Quadrupedal robots.
+# RIG-puppy a Quadrupedal robots.
 
 (English | [中文](README.md) ))
 
-# 🐶XGO-tiny Five-Degree-of-Freedom Robot Dog Lulu
+# 🐶RIG-puppy Five-Degree-of-Freedom Robot Dog Lulu
 Lightweight Smart Robot Dog Based on ESP32-S3 + XiaoZhi AI Framework | Open-Source and Replicable | Supports Voice Interaction and Remote Control
 ## Videos
 
